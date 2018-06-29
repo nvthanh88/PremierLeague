@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Premier League</string>
+    <string name="menu_table">Table</string>
+    <string name="menu_fixture">Fixture</string>
+    <string name="menu_live">Live</string>
+    <string name="menu_setting">Setting</string>
 </resources>
