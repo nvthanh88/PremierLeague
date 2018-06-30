@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PremierLeague.iml" filepath="$PROJECT_DIR$/PremierLeague.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/horizontalcalendarview/horizontalcalendarview.iml" filepath="$PROJECT_DIR$/horizontalcalendarview/horizontalcalendarview.iml" />
     </modules>
   </component>
 </project>

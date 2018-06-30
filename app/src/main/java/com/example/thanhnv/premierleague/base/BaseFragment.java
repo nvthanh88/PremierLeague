@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.example.thanhnv.premierleague.R;
 import com.example.thanhnv.premierleague.activity.MainActivity;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseFragment extends Fragment {
     private Context context;
     private MainActivity mActivity;
@@ -31,9 +33,9 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mView = setFragmentView(inflater,container,savedInstanceState);
-        return mView;
+        return inflater.inflate(setFragmentView(),container,false);
     }
+
 
     @Override
     public void onDestroyView() {
@@ -46,12 +48,19 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
-    public abstract View setFragmentView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
+    public abstract int setFragmentView();
+
     private void openFragment(Fragment fragment) {
         assert getFragmentManager() != null;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(view);
+        super.onViewCreated(view, savedInstanceState);
     }
 }
