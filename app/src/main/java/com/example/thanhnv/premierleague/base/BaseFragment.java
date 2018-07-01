@@ -14,15 +14,20 @@ import com.example.thanhnv.premierleague.R;
 import com.example.thanhnv.premierleague.activity.MainActivity;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
-    private Context context;
-    private MainActivity mActivity;
+    protected Context context;
+    protected MainActivity mActivity;
+    private Unbinder unbinder;
+
+    protected BaseFragment() {
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (mActivity != null)
-        context = mActivity;
+            mActivity = (MainActivity) context;
     }
 
     @Override
@@ -33,22 +38,37 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(setFragmentView(),container,false);
+        return inflater.inflate(setFragmentView(), container, false);
+
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        mActivity = null;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initUI();
+        initControl();
     }
 
     public abstract int setFragmentView();
+
+    public abstract void initControl();
+
+    public abstract void initUI();
+
+
 
     private void openFragment(Fragment fragment) {
         assert getFragmentManager() != null;
@@ -60,7 +80,8 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ButterKnife.bind(view);
+        unbinder = ButterKnife.bind(view);
         super.onViewCreated(view, savedInstanceState);
+
     }
 }

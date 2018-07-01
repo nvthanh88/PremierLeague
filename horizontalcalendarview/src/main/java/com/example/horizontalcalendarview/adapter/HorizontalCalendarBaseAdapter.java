@@ -128,6 +128,7 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
         // Selected Day
         if (position == selectedItemPosition) {
             applyStyle(viewHolder, horizontalCalendar.getSelectedItemStyle());
+            viewHolder.selectionView.setVisibility(View.VISIBLE);
         }
         // Unselected Days
         else {
@@ -170,9 +171,12 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
             int position = viewHolder.getAdapterPosition();
             if (position == -1)
                 return;
-
-            horizontalCalendar.getCalendarView().setSmoothScrollSpeed(HorizontalLayoutManager.SPEED_SLOW);
+            java.util.Calendar date = getItem(position);
+            horizontalCalendar.getCalendarView().setSmoothScrollSpeed(HorizontalLayoutManager.SPEED_NORMAL);
             horizontalCalendar.centerCalendarToPosition(position);
+            HorizontalCalendarListener calendarListener = horizontalCalendar.getCalendarListener();
+            calendarListener.onDateClick(date, position);
+
         }
     }
 
@@ -196,4 +200,6 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
             return calendarListener.onDateLongClicked(date, position);
         }
     }
+
+
 }

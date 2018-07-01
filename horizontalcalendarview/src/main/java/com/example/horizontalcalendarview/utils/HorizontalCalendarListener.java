@@ -18,5 +18,5 @@ public abstract class HorizontalCalendarListener {
     public boolean onDateLongClicked(Calendar date, int position) {
         return false;
     }
-
+    public abstract void onDateClick(Calendar date, int position);
 }

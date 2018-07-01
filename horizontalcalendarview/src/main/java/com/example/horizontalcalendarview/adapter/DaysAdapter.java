@@ -12,6 +12,7 @@ import com.example.horizontalcalendarview.utils.HorizontalCalendarPredicate;
 import com.example.horizontalcalendarview.utils.Utils;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -62,6 +63,15 @@ public class DaysAdapter extends HorizontalCalendarBaseAdapter<DateViewHolder, C
             holder.textBottom.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.getSizeBottomText());
         } else {
             holder.textBottom.setVisibility(View.GONE);
+        }
+        Date today = Calendar.getInstance().getTime();
+        if (DateFormat.format("dd-MM-yyyy", day).equals(DateFormat.format("dd-MM-yyyy",today))){
+            holder.textMiddle.setText("Today");
+            holder.textTop.setVisibility(View.GONE);
+            holder.textBottom.setVisibility(View.GONE);
+        }else {
+            holder.textBottom.setVisibility(View.VISIBLE);
+            holder.textTop.setVisibility(View.VISIBLE);
         }
 
         showEvents(holder, day);

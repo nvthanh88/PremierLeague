@@ -8,4 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </com.example.horizontalcalendarview.HorizontalCalendarView>
+    <View
+        android:layout_below="@+id/calendarView"
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fixtureRecycleView"
+        android:layout_below="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

@@ -22,8 +22,8 @@ class DateViewHolder extends RecyclerView.ViewHolder {
 
     DateViewHolder(View rootView) {
         super(rootView);
-        textTop = rootView.findViewById(R.id.hc_text_top);
-        textMiddle = rootView.findViewById(R.id.hc_text_middle);
+        textTop = rootView.findViewById(R.id.hc_text_month);
+        textMiddle = rootView.findViewById(R.id.hc_text_day);
         textBottom = rootView.findViewById(R.id.hc_text_bottom);
         layoutContent = rootView.findViewById(R.id.hc_layoutContent);
         selectionView = rootView.findViewById(R.id.hc_selector);

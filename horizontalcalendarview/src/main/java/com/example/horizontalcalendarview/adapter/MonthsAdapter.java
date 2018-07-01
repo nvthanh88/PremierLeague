@@ -53,7 +53,7 @@ public class MonthsAdapter extends HorizontalCalendarBaseAdapter<DateViewHolder,
         holder.textMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.getSizeMiddleText());
 
         if (config.isShowTopText()) {
-            holder.textTop.setText(DateFormat.format(config.getFormatTopText(), month));
+            holder.textTop.setText(DateFormat.format(config.getFormatTopText(), month) );
             holder.textTop.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.getSizeTopText());
         } else {
             holder.textTop.setVisibility(View.GONE);

@@ -438,6 +438,7 @@ public final class HorizontalCalendar {
         }
     };
 
+
     private class HorizontalCalendarScrollListener extends RecyclerView.OnScrollListener {
 
         int lastSelectedItem = -1;
