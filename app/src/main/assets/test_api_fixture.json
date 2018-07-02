@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "fixtures": [
+      {
+        "date": "2017-10-16",
+        "time": "00:30:00",
+        "round": "999",
+        "home_name": "Santos Laguna",
+        "away_name": "Atlas",
+        "location": "",
+        "league_id": "88"
+      },
+      {
+        "date": "2017-10-16",
+        "time": "00:30:00",
+        "round": "999",
+        "home_name": "O'Higgins",
+        "away_name": "Audax Italiano",
+        "location": "",
+        "league_id": "63"
+      },
+      {
+        "date": "2017-10-16",
+        "time": "00:30:00",
+        "round": "999",
+        "home_name": "Colorado Rapids",
+        "away_name": "Real Salt Lake",
+        "location": "",
+        "league_id": "94"
+      }
+    ],
+    "next_page": "http:\/\/livescore-api.com\/api-client\/fixtures\/matches.json?key=demo_key&amp;secret=demo_secret&amp;page=2",
+    "prev_page": false
+  }
+}

@@ -1,99 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Layout.FullWidth"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/match_info_layout_height"
-    android:orientation="horizontal"
-    android:weightSum="10">
+    android:layout_margin="2dp"
+    android:elevation="3dp"
+    app:cardCornerRadius="1dp"
+    android:background="@color/cmn_white">
 
-    <RelativeLayout
-        android:layout_width="0dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/Layout.FullWidth"
         android:layout_height="match_parent"
-        android:layout_weight="2">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
-        <TextView
-            android:id="@+id/txtTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="21h" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="7">
 
         <RelativeLayout
-            android:id="@+id/rltHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
 
-            <ImageView
-                android:id="@+id/img_home_logo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="logo of Home"
-                android:src="@drawable/manutd_logo"
-                android:scaleType="fitXY"/>
+            <LinearLayout
+                android:id="@+id/lineCover"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/home_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/img_home_logo"
-                android:text="Man Utd" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/home_score"
+                android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="1" />
+                android:layout_centerInParent="true"
+                android:text="21h" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rltAway"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
+
+            <RelativeLayout
+                android:id="@+id/rltHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+
+                <ImageView
+                    android:id="@+id/img_home_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="logo of Home"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/home_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/img_home_logo"
+                    android:text="Man Utd" />
+
+                <TextView
+                    android:id="@+id/home_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rltAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:id="@+id/img_away_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="logo of Away"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/away_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/img_away_logo"
+                    android:text="Chelsea" />
+
+                <TextView
+                    android:id="@+id/away_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="1" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/img_away_logo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="logo of Away"
-                android:src="@drawable/chelsea_logo"
-                android:scaleType="fitXY"/>
-
-            <TextView
-                android:id="@+id/away_name"
+                android:id="@+id/icon_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/img_away_logo"
-                android:text="Chelsea" />
-
-            <TextView
-                android:id="@+id/away_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="1" />
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_match_notification" />
         </RelativeLayout>
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/icon_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_match_notification" />
-    </RelativeLayout>
-
-
-</LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

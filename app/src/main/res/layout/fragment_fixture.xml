@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    style="@style/Layout.FullWidthHeight">
+    style="@style/Layout.FullWidthHeight"
+    android:background="@color/cmn_white">
 
     <com.example.horizontalcalendarview.HorizontalCalendarView
         android:id="@+id/calendarView"
@@ -12,8 +13,8 @@
         android:layout_below="@+id/calendarView"
         android:id="@+id/viewDivider"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_height="5dp"
+        android:background="@color/cmn_gray_bg"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fixtureRecycleView"
         android:layout_below="@+id/viewDivider"
