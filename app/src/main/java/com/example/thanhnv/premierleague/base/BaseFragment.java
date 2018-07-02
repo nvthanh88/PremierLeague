@@ -58,8 +58,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initUI();
-        initControl();
+
     }
 
     public abstract int setFragmentView();
@@ -82,6 +81,7 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(view);
         super.onViewCreated(view, savedInstanceState);
-
+        initUI();
+        initControl();
     }
 }

@@ -27,4 +27,5 @@ public class BaseActivity extends AppCompatActivity{
         if (isAddToBackStack) transaction.isAddToBackStackAllowed();
         transaction.commit();
     }
+
 }

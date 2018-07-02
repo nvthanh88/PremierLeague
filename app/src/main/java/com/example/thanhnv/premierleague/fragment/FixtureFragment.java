@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.util.JsonReader;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,9 +17,18 @@ import com.example.horizontalcalendarview.utils.HorizontalCalendarListener;
 import com.example.thanhnv.premierleague.R;
 import com.example.thanhnv.premierleague.adapter.MatchAdapter;
 import com.example.thanhnv.premierleague.base.BaseFragment;
+import com.example.thanhnv.premierleague.model.Fixture;
 import com.example.thanhnv.premierleague.model.Match;
+import com.example.thanhnv.premierleague.ultils.TestUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,11 +39,11 @@ import butterknife.ButterKnife;
 
 public class FixtureFragment extends BaseFragment {
     private static final String TAG = FixtureFragment.class.getSimpleName();
-    private HorizontalCalendar horizontalCalendar;
     @BindView(R.id.fixtureRecycleView)
     RecyclerView fixtureRecycleView;
-    private List<Match> matchList = new ArrayList<>();
+    private List<Fixture> fixtures = new ArrayList<>();
     private MatchAdapter matchAdapter;
+
     @Override
     public int setFragmentView() {
         return R.layout.fragment_fixture;
@@ -46,6 +56,12 @@ public class FixtureFragment extends BaseFragment {
 
     @Override
     public void initUI() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+        fixtureRecycleView = (RecyclerView) getView().findViewById(R.id.fixtureRecycleView);
+        fixtureRecycleView.setLayoutManager(layoutManager);
+        fixtureRecycleView.setItemAnimator(new DefaultItemAnimator());
+        matchAdapter = new MatchAdapter(mActivity, fixtures);
+        fixtureRecycleView.setAdapter(matchAdapter);
 
     }
 
@@ -61,12 +77,13 @@ public class FixtureFragment extends BaseFragment {
 
 
     }
-    private void setupCalendar(){
+
+    private void setupCalendar() {
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 10);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, 0);
-        horizontalCalendar = new HorizontalCalendar.Builder(getView(), R.id.calendarView)
+        HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(getView(), R.id.calendarView)
                 .range(startDate, endDate)
                 .datesNumberOnScreen(5)
                 .configure()
@@ -76,7 +93,7 @@ public class FixtureFragment extends BaseFragment {
                 .showTopText(true)
                 .showBottomText(true)
                 .textColor(Color.BLACK, getResources().getColor(R.color.colorAccent))
-                .textSize(14f,14f,14f)
+                .textSize(14f, 14f, 14f)
                 .end()
                 .build();
 
@@ -88,19 +105,27 @@ public class FixtureFragment extends BaseFragment {
 
             @Override
             public void onDateClick(Calendar date, int position) {
-               // Toast.makeText(getContext(), DateFormat.format("dd-MM-yyyy",date),Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), DateFormat.format("dd-MM-yyyy",date),Toast.LENGTH_SHORT).show();
                 //Todo getApi and display Match
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mActivity,LinearLayoutManager.HORIZONTAL,false);
-                fixtureRecycleView = (RecyclerView) getView().findViewById(R.id.fixtureRecycleView);
-                fixtureRecycleView.setLayoutManager(layoutManager);
-                fixtureRecycleView.setItemAnimator(new DefaultItemAnimator());
-                fixtureRecycleView.setAdapter(matchAdapter);
-                matchList.add(new Match("Manchester United","Chelsea","1","0"));
-                matchAdapter = new MatchAdapter(context,matchList);
-                matchAdapter.notifyDataSetChanged();
+                fixtures.clear();
+                try {
+                    JSONObject jsonObject = (new JSONObject(TestUtils.loadJSONFromAsset(mActivity)));
+                    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("fixtures");
+                    Type listType = new TypeToken<List<Fixture>>() {}.getType();
+                    List<Fixture> list;
+                    list = new Gson().fromJson(String.valueOf(jsonArray),listType);
+                    fixtures.addAll(list);
+                    matchAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
             }
 
 
         });
     }
+
 }
